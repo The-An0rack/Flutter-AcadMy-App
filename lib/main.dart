@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       home: AnimatedSplashScreen(
         splash: Splash(),
         nextScreen: Homepage(),
-        duration: 1500,
+        duration: 2000,
         splashTransition: SplashTransition.fadeTransition,
       ),
     );
