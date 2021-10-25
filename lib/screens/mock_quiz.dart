@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_basic_quiz_app_udemy/screens/quiz.dart';
-import './screens/results.dart';
+import '../../screens/quiz.dart';
+import '../../screens/results.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatefulWidget {
-  MyApp({Key? key}) : super(key: key);
+class MockQuiz extends StatefulWidget {
+  MockQuiz({Key? key}) : super(key: key);
 
   @override
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<MockQuiz> {
   final _ques = [
     {
       'questionText':

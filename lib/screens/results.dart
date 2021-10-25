@@ -22,13 +22,23 @@ class Result extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-        child: Text(
-          "Score: " + totalScore.toString() + "\n" + resultPhrase,
-          style: TextStyle(
-            fontSize: 36,
-            fontWeight: FontWeight.bold,
-          ),
-          textAlign: TextAlign.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Score: " + totalScore.toString() + "\n" + resultPhrase,
+              style: TextStyle(
+                fontSize: 36,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text("Go Back To HomeOPage"))
+          ],
         ),
       ),
     );
