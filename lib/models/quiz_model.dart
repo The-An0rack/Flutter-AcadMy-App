@@ -12,11 +12,11 @@ var quizData = [
     "maxMarks": 20,
     "noQue": 5,
   },
-  {
+  /* {
     "title": "Theory of Computation",
     "maxMarks": 20,
     "noQue": 5,
-  },
+  },*/
 ];
 
 List<QuizTile> quiz = quizData

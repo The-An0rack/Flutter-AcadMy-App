@@ -1,6 +1,6 @@
 {
-    "name": "flutter_acadmy_app",
-    "short_name": "flutter_acadmy_app",
+    "name": "acadmy",
+    "short_name": "acadmy",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

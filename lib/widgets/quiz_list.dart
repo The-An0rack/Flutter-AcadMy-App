@@ -8,39 +8,47 @@ class QuizList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100.0,
+      height: 350.0,
       margin: EdgeInsets.symmetric(horizontal: 20.0),
       width: double.infinity,
-      child: ListView.builder(
-        itemCount: quizData.length,
-        itemBuilder: (context, index) {
-          return Container(
-            height: 100.0,
-            child: ElevatedButton(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    quiz[index].title,
-                    style: TextStyle(
-                      fontSize: 25.0,
-                      fontWeight: FontWeight.bold,
-                    ),
+      child: Scrollbar(
+        child: ListView.builder(
+          itemCount: quizData.length,
+          itemBuilder: (context, index) {
+            return Container(
+              height: 130.0,
+              child: ElevatedButton(
+                child: Container(
+                  padding: EdgeInsets.only(top: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        quiz[index].title,
+                        style: TextStyle(
+                          fontSize: 25.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text("Marks: ${quiz[index].maxMarks.toString()}"),
+                      Text("Ques. ${quiz[index].noQue.toString()}"),
+                      SizedBox(
+                        height: 20.0,
+                      )
+                    ],
                   ),
-                  Text("Marks: ${quiz[index].maxMarks.toString()}"),
-                  Text("Ques. ${quiz[index].noQue.toString()}")
-                ],
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MockQuiz()),
+                  );
+                },
               ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MockQuiz()),
-                );
-              },
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

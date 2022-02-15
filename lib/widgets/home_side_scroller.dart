@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/homescreendata.dart';
+import '../models/test_tile_data.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeSideScroller extends StatelessWidget {

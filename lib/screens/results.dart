@@ -1,3 +1,4 @@
+import 'package:acadmy/screens/mainpage.dart';
 import 'package:flutter/material.dart';
 
 class Result extends StatelessWidget {
@@ -35,7 +36,10 @@ class Result extends StatelessWidget {
             ),
             ElevatedButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MainPage()),
+                  );
                 },
                 child: Text("Go Back To HomeOPage"))
           ],
