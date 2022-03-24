@@ -1,12 +1,28 @@
 import 'package:acadmy/dummy_data/profile_data.dart';
+import 'package:acadmy/models/user_profile.dart';
 import 'package:acadmy/widgets/circular_percent_widget.dart';
-import 'package:percent_indicator/percent_indicator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  final user = FirebaseAuth.instance.currentUser;
+
+  @override
+  void initState() {
+    WidgetsBinding.instance!.addPostFrameCallback(
+        (_) => UserProfile.fetchUserData(user!.email.toString()));
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,18 +33,23 @@ class ProfileScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            SizedBox(
+              height: 24,
+            ),
             Container(
               height: 160,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(200),
                 child: Image.network(
-                  "${userDat.pic_url}",
+                  "https://cdn.pixabay.com/photo/2016/08/31/11/54/user-1633249_1280.png",
+                  //"${user!.photoURL.toString()}",
                 ),
               ),
             ),
             Container(
               child: Text(
-                "${userDat.name}",
+                "${UserProfile.name}",
+                //user!.email.toString(),
                 style: GoogleFonts.inter(
                   fontSize: 35.0,
                   fontWeight: FontWeight.w700,
@@ -38,7 +59,8 @@ class ProfileScreen extends StatelessWidget {
             ),
             Container(
               child: Text(
-                "Batch: ${userDat.batch}",
+                // "Batch: ${UserProfile.batch}",
+                "Batch: TargetSDE",
                 style: GoogleFonts.inter(
                   fontSize: 20.0,
                   fontWeight: FontWeight.w500,
@@ -49,7 +71,7 @@ class ProfileScreen extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            CircularPercent("Accuracy", userDat.accuracy, 150, 25),
+            CircularPercent("Accuracy", UserProfile.accuracy, 150, 25),
             SizedBox(
               height: 50,
             ),
@@ -59,17 +81,31 @@ class ProfileScreen extends StatelessWidget {
                 child: Center(
                   child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: userDat.sub_scc.length,
+                      itemCount: UserProfile.subAcc.length,
                       itemBuilder: (context, index) {
                         return CircularPercent(
-                            userDat.sub_scc[index].keys.first,
-                            userDat.sub_scc[index].values.first,
-                            100.0,
-                            15.0);
+                          UserProfile.subList[index],
+                          UserProfile.subAcc[index],
+                          100.0,
+                          15.0,
+                        );
                       }),
                 ),
               ),
             ),
+            ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(
+                  minimumSize: const Size.fromHeight(50)),
+              onPressed: () => FirebaseAuth.instance.signOut(),
+              icon: const Icon(
+                Icons.arrow_back,
+                size: 32,
+              ),
+              label: const Text(
+                'Sign Out',
+                style: TextStyle(fontSize: 24),
+              ),
+            )
           ],
         ),
       ),

@@ -1,10 +1,12 @@
+import 'package:acadmy/models/user_profile.dart';
 import 'package:acadmy/screens/mainpage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:animated_splash_screen/animated_splash_screen.dart';
+//import 'package:animated_splash_screen/animated_splash_screen.dart';
 
-import './screens/splash.dart';
+//import './screens/splash.dart';
 import 'screens/login_page.dart';
 import 'widgets/utils.dart';
 
@@ -32,7 +34,8 @@ class _MyAppState extends State<MyApp> {
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: StreamBuilder<User?>(
+        body:
+            LoginPage(), /*StreamBuilder<User?>(
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -44,12 +47,15 @@ class _MyAppState extends State<MyApp> {
                 child: Text("Something went wrong!!!"),
               );
             } else if (snapshot.hasData) {
+              UserProfile.fetchUserData(snapshot.data!.email.toString());
+
               return MainPage();
             } else {
               return LoginPage();
             }
           },
         ),
+      ),*/
       ),
     );
   }

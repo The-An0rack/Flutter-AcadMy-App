@@ -1,4 +1,4 @@
-import 'package:acadmy/models/user_profile.dart';
+/*import 'package:acadmy/models/user_profile.dart';
 
 final userDat = UserProfile(
   "Dewashish Mehta",
@@ -11,4 +11,4 @@ final userDat = UserProfile(
     {"Operating System": 80},
     {"DBMS": 92}
   ],
-);
+);*/
