@@ -31,6 +31,10 @@ dependencies:
   google_fonts: ^2.1.0
   animated_splash_screen: ^1.1.0
   percent_indicator: ^3.4.0
+  cloud_firestore: ^3.1.10
+  firebase_auth: ^3.3.11
+  firebase_core: ^1.13.1
+  email_validator: ^2.0.1
 
 dev_dependencies:
   flutter_test:

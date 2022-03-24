@@ -1,7 +1,7 @@
 class User {
-  static final String name;
-  static final String email;
-  static final String goal;
+  final String name;
+  final String email;
+  final String goal;
 
   User({required this.name, required this.email, required this.goal});
 }
