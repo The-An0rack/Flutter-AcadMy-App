@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../main.dart';
 import '../widgets/utils.dart';
 import 'login_page.dart';
+import 'mainpage.dart';
 
 class SignUpPage extends StatefulWidget {
   SignUpPage({Key? key}) : super(key: key);
@@ -263,18 +264,32 @@ class _SignUpPageState extends State<SignUpPage> {
       UserProfile.batch = "Target SDE";
       UserProfile.picUrl =
           "https://cdn.pixabay.com/photo/2016/08/31/11/54/user-1633249_1280.png";
+      UserProfile.subQue = UserProfile.initSubQue();
+      UserProfile.accuracy = 0;
+      UserProfile.subAcc = [0, 0, 0, 0];
 
       final json = UserProfile.toJson();
 
       await docUser.set(json);
+
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+      UserProfile.subQue = UserProfile.initSubQue();
+      UserProfile.fetchUserData(emailController.text.trim());
+
+      Utils.showSnackBar("Account Created Successfully");
+
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => MainPage()));
     } on FirebaseAuthException catch (e) {
       Utils.showSnackBar(e.message);
     } on Exception catch (e) {
       Utils.showSnackBar(e.toString());
     }
 
-    Utils.showSnackBar("Account Created Successfully");
-    Navigator.of(context).pop();
+    //Navigator.of(context).pop();
     //navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 }

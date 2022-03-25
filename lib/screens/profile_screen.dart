@@ -1,5 +1,8 @@
+import 'dart:ffi';
+
 import 'package:acadmy/dummy_data/profile_data.dart';
 import 'package:acadmy/models/user_profile.dart';
+import 'package:acadmy/screens/login_page.dart';
 import 'package:acadmy/widgets/circular_percent_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -18,10 +21,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   void initState() {
-    WidgetsBinding.instance!.addPostFrameCallback(
-        (_) => UserProfile.fetchUserData(user!.email.toString()));
     // TODO: implement initState
     super.initState();
+
+    WidgetsBinding.instance!.addPostFrameCallback(
+        (_) => UserProfile.fetchUserData(user!.email.toString()));
+    UserProfile.calculateAccuracy();
   }
 
   @override
@@ -71,7 +76,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
             SizedBox(
               height: 10,
             ),
-            CircularPercent("Accuracy", UserProfile.accuracy, 150, 25),
+            CircularPercent(
+                "Accuracy",
+                double.parse((UserProfile.accuracy * 100).toStringAsFixed(1)),
+                150,
+                25),
             SizedBox(
               height: 50,
             ),
@@ -81,11 +90,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Center(
                   child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: UserProfile.subAcc.length,
+                      itemCount: 5,
                       itemBuilder: (context, index) {
                         return CircularPercent(
                           UserProfile.subList[index],
-                          UserProfile.subAcc[index],
+                          double.parse((UserProfile.subAcc[index] * 100)
+                              .toStringAsFixed(1)),
                           100.0,
                           15.0,
                         );
@@ -96,7 +106,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
                   minimumSize: const Size.fromHeight(50)),
-              onPressed: () => FirebaseAuth.instance.signOut(),
+              onPressed: signOut,
               icon: const Icon(
                 Icons.arrow_back,
                 size: 32,
@@ -110,5 +120,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => LoginPage()));
   }
 }

@@ -40,6 +40,7 @@ class _MainPageState extends State<MainPage> {
         ],
         onTap: (currIndex) {
           setState(() {
+            print(currIndex);
             _indexBottom = currIndex;
           });
         },

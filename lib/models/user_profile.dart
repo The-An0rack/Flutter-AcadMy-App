@@ -15,7 +15,6 @@ class UserProfile {
     "Operating System",
     "DBMS"
   ];
-
   static List<Map<String, int>> subQue = [
     {'correct': 0, 'total': 0},
     {'correct': 0, 'total': 0},
@@ -24,16 +23,29 @@ class UserProfile {
     {'correct': 0, 'total': 0}
   ];
 
+  static List<Map<String, int>> initSubQue() {
+    return [
+      {'correct': 0, 'total': 0},
+      {'correct': 0, 'total': 0},
+      {'correct': 0, 'total': 0},
+      {'correct': 0, 'total': 0},
+      {'correct': 0, 'total': 0}
+    ];
+  }
+
   //
 
   static void calculateAccuracy() {
+    int j = 0;
     for (var i in subQue) {
-      double temp = (i['correct'])! / i['total']!.toInt();
-      print(temp);
-      subAcc.add(temp);
+      double temp = (i['correct'])! /
+          ((i['total']!.toInt() == 0) ? 1 : i['total']!.toInt());
+      subAcc[j] = temp;
+      j++;
     }
 
     double temp = 0;
+
     for (var i in subAcc) {
       temp += i;
     }
@@ -57,10 +69,10 @@ class UserProfile {
 
     var userData = response.data();
 
-    name = userData!['name'].toString();
-    email = userData['email'].toString();
-    batch = userData['batch'].toString();
-    picUrl = userData['pic_url'].toString();
+    UserProfile.name = userData!['name'].toString();
+    UserProfile.email = userData['email'].toString();
+    UserProfile.batch = userData['batch'].toString();
+    UserProfile.picUrl = userData['pic_url'].toString();
 
     subAcc[0] = userData['sub_acc'][0];
     subAcc[1] = userData['sub_acc'][1];

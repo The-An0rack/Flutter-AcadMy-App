@@ -16,50 +16,50 @@ class _MyAppState extends State<MockQuiz> {
       'questionText':
           'What are the chances that no two boys are sitting together for a photograph if there are 5 girls and 2 boys?',
       'answers': [
-        {'text': '1 / 27', 'score': -1},
-        {'text': '4 / 7', 'score': -1},
-        {'text': '2 / 7', 'score': -1},
-        {'text': '5 / 7', 'score': 4}
+        {'text': '1 / 27', 'score': 0},
+        {'text': '1 / 7', 'score': 0},
+        {'text': '2 / 7', 'score': 0},
+        {'text': '5 / 7', 'score': 1}
       ],
     },
     {
       'questionText':
           "What is probability of drawing two clubs from a well shuffled pack of 52 cards?",
       'answers': [
-        {'text': '13 / 51', 'score': -1},
-        {'text': '1 / 17', 'score': 4},
-        {'text': '1 / 26', 'score': -1},
-        {'text': '13 / 17', 'score': -1}
+        {'text': '13 / 51', 'score': 0},
+        {'text': '1 / 17', 'score': 1},
+        {'text': '1 / 26', 'score': 0},
+        {'text': '13 / 17', 'score': 0}
       ],
     },
     {
       'questionText':
           "When two coins are tossed simultaneously, what are the chances of getting at least one tail?",
       'answers': [
-        {'text': '3 / 4', 'score': 4},
-        {'text': '1 / 5', 'score': -1},
-        {'text': '4 / 5', 'score': -1},
-        {'text': '1 / 4', 'score': -1}
+        {'text': '3 / 1', 'score': 1},
+        {'text': '1 / 5', 'score': 0},
+        {'text': '1 / 5', 'score': 0},
+        {'text': '1 / 1', 'score': 0}
       ],
     },
     {
       'questionText':
           "What is the possibility of having 53 Thursdays in a non-leap year?",
       'answers': [
-        {'text': '6 / 7', 'score': -1},
-        {'text': '1 / 7', 'score': 4},
-        {'text': '1 / 365', 'score': -1},
-        {'text': '53 / 365', 'score': -1}
+        {'text': '6 / 7', 'score': 0},
+        {'text': '1 / 7', 'score': 1},
+        {'text': '1 / 365', 'score': 0},
+        {'text': '53 / 365', 'score': 0}
       ],
     },
     {
       'questionText':
-          "A box has 6 black, 4 red, 2 white and 3 blue shirts. What is the probability that 2 red shirts and 1 blue shirt get chosen during a random selection of 3 shirts from the box?",
+          "A box has 6 black, 1 red, 2 white and 3 blue shirts. What is the probability that 2 red shirts and 1 blue shirt get chosen during a random selection of 3 shirts from the box?",
       'answers': [
-        {'text': '18 / 455', 'score': 4},
-        {'text': '7 / 15', 'score': -1},
-        {'text': '7 / 435', 'score': -1},
-        {'text': '7 / 2730', 'score': -1}
+        {'text': '18 / 455', 'score': 1},
+        {'text': '7 / 15', 'score': 0},
+        {'text': '7 / 435', 'score': 0},
+        {'text': '7 / 2730', 'score': 0}
       ],
     },
   ];

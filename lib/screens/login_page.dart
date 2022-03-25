@@ -137,7 +137,11 @@ class _LoginPageState extends State<LoginPage> {
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
-      UserProfile.fetchUserData(emailController.text.trim());
+      setState(() {
+        UserProfile.subQue = UserProfile.initSubQue();
+        UserProfile.email = emailController.text.trim();
+        UserProfile.fetchUserData(emailController.text.trim());
+      });
 
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => MainPage()));
