@@ -36,6 +36,16 @@ class UserProfile {
   //
 
   static void calculateAccuracy() {
+    int total = 0, correct = 0;
+    for (var i in subQue) {
+      total += i['total']!.toInt();
+      correct += i['correct']!.toInt();
+    }
+    if (total == 0)
+      accuracy = 0;
+    else
+      accuracy = correct / total;
+
     int j = 0;
     for (var i in subQue) {
       double temp = (i['correct'])! /
@@ -43,13 +53,13 @@ class UserProfile {
       subAcc[j] = temp;
       j++;
     }
-
+/*
     double temp = 0;
 
     for (var i in subAcc) {
       temp += i;
     }
-    accuracy = temp / subList.length;
+    accuracy = temp / subList.length;*/
   }
 
   static Map<String, dynamic> toJson() {
@@ -69,16 +79,21 @@ class UserProfile {
 
     var userData = response.data();
 
-    UserProfile.name = userData!['name'].toString();
-    UserProfile.email = userData['email'].toString();
-    UserProfile.batch = userData['batch'].toString();
-    UserProfile.picUrl = userData['pic_url'].toString();
+    print("-----------------------------------------------------Fetching---");
 
-    subAcc[0] = userData['sub_acc'][0];
-    subAcc[1] = userData['sub_acc'][1];
-    subAcc[2] = userData['sub_acc'][2];
-    subAcc[3] = userData['sub_acc'][3];
-    subAcc[4] = userData['sub_acc'][4];
+    UserProfile.name = userData!['name'].toString();
+    print(UserProfile.name);
+    UserProfile.email = userData['email'].toString();
+    print(UserProfile.email);
+    UserProfile.batch = userData['batch'].toString();
+    print(UserProfile.batch);
+    UserProfile.picUrl = userData['pic_url'].toString();
+    print(userData['sub_acc'][0]);
+
+    for (int i = 0; i < 5; i++) {
+      subQue[i]['total'] = userData['sub_acc'][i]['total'];
+      subQue[i]['correct'] = userData['sub_acc'][i]['correct'];
+    }
     print(
         "-----------------------------------------------------Initialising---");
     calculateAccuracy();

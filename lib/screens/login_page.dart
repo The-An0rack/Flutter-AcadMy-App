@@ -23,6 +23,13 @@ class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    UserProfile.name = 'Loading . . .';
+  }
+
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
@@ -126,12 +133,12 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future signIn() async {
-    showDialog(
+    /*showDialog(
       context: context,
       builder: (context) => const Center(
         child: CircularProgressIndicator(),
       ),
-    );
+    );*/
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text.trim(),
@@ -142,7 +149,6 @@ class _LoginPageState extends State<LoginPage> {
         UserProfile.email = emailController.text.trim();
         UserProfile.fetchUserData(emailController.text.trim());
       });
-
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => MainPage()));
     } on FirebaseAuthException catch (e) {

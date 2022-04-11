@@ -16,7 +16,8 @@ class QuizList extends StatelessWidget {
           itemCount: quizData.length,
           itemBuilder: (context, index) {
             return Container(
-              height: 130.0,
+              padding: EdgeInsets.all(5),
+              height: 120.0,
               child: ElevatedButton(
                 child: Container(
                   padding: EdgeInsets.only(top: 20),
@@ -35,6 +36,9 @@ class QuizList extends StatelessWidget {
                       Text("Ques. ${quiz[index].noQue.toString()}"),
                       SizedBox(
                         height: 20.0,
+                      ),
+                      SizedBox(
+                        height: 5,
                       )
                     ],
                   ),
@@ -42,7 +46,9 @@ class QuizList extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => MockQuiz()),
+                    MaterialPageRoute(
+                      builder: (context) => MockQuiz(quiz[index].title, index),
+                    ),
                   );
                 },
               ),

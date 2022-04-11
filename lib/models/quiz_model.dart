@@ -8,15 +8,30 @@ class QuizTile {
 
 var quizData = [
   {
-    "title": "Probability",
-    "maxMarks": 20,
+    "title": "Aptitude",
+    "maxMarks": 5,
     "noQue": 5,
   },
-  /* {
-    "title": "Theory of Computation",
-    "maxMarks": 20,
+  {
+    "title": "Current Affairs",
+    "maxMarks": 5,
     "noQue": 5,
-  },*/
+  },
+  {
+    "title": "Programming Logic",
+    "maxMarks": 5,
+    "noQue": 5,
+  },
+  {
+    "title": "Operating Systems",
+    "maxMarks": 5,
+    "noQue": 5,
+  },
+  {
+    "title": "DBMS",
+    "maxMarks": 5,
+    "noQue": 5,
+  },
 ];
 
 List<QuizTile> quiz = quizData

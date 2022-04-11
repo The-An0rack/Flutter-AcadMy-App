@@ -37,7 +37,7 @@ class CircularPercent extends StatelessWidget {
             ),
           ),
           Text(
-            "${label}",
+            "$label",
             style: GoogleFonts.inter(
               fontSize: fontSize,
               fontWeight: FontWeight.w700,

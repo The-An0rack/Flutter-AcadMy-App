@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Container(
                     padding: EdgeInsets.only(
                       top: 40.0,
-                      left: 10,
+                      left: 20,
                     ),
                     child: Column(
                       children: [
@@ -47,24 +47,25 @@ class _HomeScreenState extends State<HomeScreen> {
                           "Hi There!!!",
                           style: GoogleFonts.inter(
                               fontSize: 18.0, fontWeight: FontWeight.w500),
-                          textAlign: TextAlign.left,
+                          //textAlign: TextAlign.left,
                         ),
                         Text(
                           UserProfile.name,
                           style: GoogleFonts.inter(
                               fontSize: 30.0, fontWeight: FontWeight.w700),
+                          textAlign: TextAlign.left,
                         ),
                       ],
                     ),
                   ),
                   HomeSideScroller(),
                   Padding(
-                    padding: const EdgeInsets.only(
-                        top: 20, left: 16.0, bottom: 16.0),
+                    padding:
+                        const EdgeInsets.only(top: 20, left: 16.0, bottom: 0.0),
                     child: Text(
                       "Short Quizzes",
                       style: GoogleFonts.inter(
-                          fontSize: 18.0, fontWeight: FontWeight.w500),
+                          fontSize: 18.0, fontWeight: FontWeight.w700),
                     ),
                   ),
                   QuizList(),

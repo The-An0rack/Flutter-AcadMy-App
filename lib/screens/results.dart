@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 
 class Result extends StatefulWidget {
   int totalScore;
-  Result(this.totalScore);
+  int _quizIndex;
+  Result(this.totalScore, this._quizIndex);
 
   @override
   State<Result> createState() => _ResultState();
@@ -15,13 +16,13 @@ class _ResultState extends State<Result> {
   String get resultPhrase {
     var resultText = "You did it!!!";
 
-    if (widget.totalScore <= 0)
+    if (widget.totalScore == 0)
       resultText = "You need to study harder";
-    else if (widget.totalScore <= 8)
+    else if (widget.totalScore <= 3)
       resultText = "A bit of push would be great!";
-    else if (widget.totalScore <= 16)
+    else if (widget.totalScore <= 4)
       resultText = "Keep Going!!!";
-    else if (widget.totalScore <= 20) resultText = "Amazing!!!";
+    else if (widget.totalScore == 5) resultText = "Amazing!!!";
 
     return resultText;
   }
@@ -50,15 +51,13 @@ class _ResultState extends State<Result> {
 
   Future res() async {
     {
-      showDialog(
-        context: context,
-        builder: (context) => const Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
-      UserProfile.subQue[0]['correct'] =
-          (UserProfile.subQue[0]['correct']! + widget.totalScore);
-      UserProfile.subQue[0]['total'] = (UserProfile.subQue[0]['total']! + 5);
+      print("-----------------------------------------------------Data---");
+      print(widget._quizIndex);
+      UserProfile.subQue[widget._quizIndex]['correct'] =
+          (UserProfile.subQue[widget._quizIndex]['correct']! +
+              widget.totalScore);
+      UserProfile.subQue[widget._quizIndex]['total'] =
+          (UserProfile.subQue[widget._quizIndex]['total']! + 5);
       await FirebaseFirestore.instance
           .collection('users')
           .doc(UserProfile.email)
