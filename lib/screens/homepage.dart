@@ -1,53 +1,54 @@
+import 'package:acadmy_app/screens/dashboard.dart';
+import 'package:acadmy_app/screens/profile_page.dart';
+import 'package:acadmy_app/screens/syllabus_page.dart';
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 
-import 'doubt_screen.dart';
-import 'homescreen.dart';
-import 'profile_screen.dart';
+import '../data/device_details.dart';
 
-class Homepage extends StatefulWidget {
-  const Homepage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  static String routeName = '/';
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  _HomepageState createState() => _HomepageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomepageState extends State<Homepage> {
-  int _indexBottom = 0;
-
-  var tabs = [
-    HomeScreen(),
-    DoubtScreen(),
-    ProfileScreen(),
-  ];
-  //Handle Indicator
-  List<T> map<T>(List list, Function handler) {
-    List<T> result = [];
-    for (var i = 0; i < list.length; i++) {
-      result.add(handler(i, list[i]));
-    }
-    return result;
-  }
+class _HomePageState extends State<HomePage> {
+  int _currentPageIndex = 2;
+  List<Widget> pages = [Dashboard(), SyllabusPage(), ProfilePage()];
 
   @override
   Widget build(BuildContext context) {
+    DeviceDetails.height = MediaQuery.of(context).size.height;
+    DeviceDetails.width = MediaQuery.of(context).size.width;
+    DeviceDetails.fontScale = MediaQuery.of(context).textScaleFactor;
+
     return Scaffold(
-      body: tabs[_indexBottom],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _indexBottom,
-        elevation: 50,
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.question_answer_outlined),
-              label: "Doubt Support"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle_outlined), label: "Profile"),
-        ],
-        onTap: (currIndex) {
-          setState(() {
-            _indexBottom = currIndex;
-          });
-        },
+      body: pages[_currentPageIndex],
+      bottomNavigationBar: Container(
+        color: Colors.grey.shade200,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+          child: GNav(
+            duration: const Duration(milliseconds: 400),
+            backgroundColor: Colors.grey.shade200,
+            color: Colors.green,
+            activeColor: Colors.white,
+            tabBackgroundColor: Colors.greenAccent.shade400,
+            selectedIndex: _currentPageIndex,
+            onTabChange: (index) {
+              setState(() {
+                _currentPageIndex = index;
+              });
+            },
+            tabs: [
+              GButton(icon: Icons.home, text: 'Home'),
+              GButton(icon: Icons.book, text: 'Syllabus'),
+              GButton(icon: Icons.account_circle, text: 'Profile')
+            ],
+          ),
+        ),
       ),
     );
   }
