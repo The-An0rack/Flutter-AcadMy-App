@@ -15,6 +15,5 @@ class _SyllabusPageState extends State<SyllabusPage> {
         child: Center(child: Text("Syllabus")),
       ),
     );
-    ;
   }
 }

@@ -1,7 +1,10 @@
-import 'package:acadmy_app/data/device_details.dart';
+// import 'package:acadmy_app/model/test_details.dart';
 import 'package:acadmy_app/screens/dashboard.dart';
 import 'package:acadmy_app/screens/homepage.dart';
+import 'package:acadmy_app/screens/mock_test.dart';
+import 'package:acadmy_app/screens/result_screen.dart';
 import 'package:acadmy_app/screens/signup_screen.dart';
+import 'package:acadmy_app/screens/subject_test.dart';
 import 'package:flutter/material.dart';
 
 import 'screens/signin_screen.dart';
@@ -10,19 +13,27 @@ void main(List<String> args) {
   runApp(
     MaterialApp(
       theme: ThemeData(
-          textTheme: TextTheme(
-              displayLarge:
-                  TextStyle(fontSize: 64, fontWeight: FontWeight.bold),
-              displayMedium:
-                  TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-              displaySmall:
-                  TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              headline1: TextStyle(fontSize: 16, fontWeight: FontWeight.w500))),
+        textTheme: const TextTheme(
+            displayLarge: TextStyle(fontSize: 64, fontWeight: FontWeight.bold),
+            displayMedium: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+            displaySmall: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            headlineMedium: TextStyle(
+                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.grey),
+            headlineSmall: TextStyle(
+                fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
+            titleSmall: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.white)),
+      ),
       routes: {
-        HomePage.routeName: (context) => HomePage(),
+        HomePage.routeName: (context) => const HomePage(),
         SignInScreen.routeName: (context) => const SignInScreen(),
         SignUpScreen.routeName: (context) => SignUpScreen(),
-        Dashboard.routeName: (context) => Dashboard(),
+        Dashboard.routeName: (context) => const Dashboard(),
+        MockTestScreen.routeName: (context) => const MockTestScreen(),
+        SubjectTest.routeName: (context) => SubjectTest(),
+        ResultScreen.routeName: (context) => ResultScreen()
       },
       title: "AcadMy",
       debugShowCheckedModeBanner: false,

@@ -15,8 +15,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _currentPageIndex = 2;
-  List<Widget> pages = [Dashboard(), SyllabusPage(), ProfilePage()];
+  int _currentPageIndex = 0;
+  List<Widget> pages = [const Dashboard(), SyllabusPage(), const ProfilePage()];
 
   @override
   Widget build(BuildContext context) {
@@ -24,29 +24,31 @@ class _HomePageState extends State<HomePage> {
     DeviceDetails.width = MediaQuery.of(context).size.width;
     DeviceDetails.fontScale = MediaQuery.of(context).textScaleFactor;
 
-    return Scaffold(
-      body: pages[_currentPageIndex],
-      bottomNavigationBar: Container(
-        color: Colors.grey.shade200,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
-          child: GNav(
-            duration: const Duration(milliseconds: 400),
-            backgroundColor: Colors.grey.shade200,
-            color: Colors.green,
-            activeColor: Colors.white,
-            tabBackgroundColor: Colors.greenAccent.shade400,
-            selectedIndex: _currentPageIndex,
-            onTabChange: (index) {
-              setState(() {
-                _currentPageIndex = index;
-              });
-            },
-            tabs: [
-              GButton(icon: Icons.home, text: 'Home'),
-              GButton(icon: Icons.book, text: 'Syllabus'),
-              GButton(icon: Icons.account_circle, text: 'Profile')
-            ],
+    return SafeArea(
+      child: Scaffold(
+        body: pages[_currentPageIndex],
+        bottomNavigationBar: Container(
+          color: Colors.grey.shade200,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+            child: GNav(
+              duration: const Duration(milliseconds: 400),
+              backgroundColor: Colors.grey.shade200,
+              color: Colors.green,
+              activeColor: Colors.white,
+              tabBackgroundColor: Colors.greenAccent.shade400,
+              selectedIndex: _currentPageIndex,
+              onTabChange: (index) {
+                setState(() {
+                  _currentPageIndex = index;
+                });
+              },
+              tabs: const [
+                GButton(icon: Icons.home, text: 'Home'),
+                GButton(icon: Icons.book, text: 'Syllabus'),
+                GButton(icon: Icons.account_circle, text: 'Profile')
+              ],
+            ),
           ),
         ),
       ),
