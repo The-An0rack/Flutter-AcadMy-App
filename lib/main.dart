@@ -5,9 +5,11 @@ import 'package:acadmy_app/screens/mock_test.dart';
 import 'package:acadmy_app/screens/result_screen.dart';
 import 'package:acadmy_app/screens/signup_screen.dart';
 import 'package:acadmy_app/screens/subject_test.dart';
+import 'package:acadmy_app/screens/subjects_test.dart';
 import 'package:flutter/material.dart';
 
 import 'screens/signin_screen.dart';
+import 'screens/welcome.dart';
 
 void main(List<String> args) {
   runApp(
@@ -27,12 +29,15 @@ void main(List<String> args) {
                 color: Colors.white)),
       ),
       routes: {
+        // '/': (context) => WelcomeScreen(),
         HomePage.routeName: (context) => const HomePage(),
         SignInScreen.routeName: (context) => const SignInScreen(),
         SignUpScreen.routeName: (context) => SignUpScreen(),
         Dashboard.routeName: (context) => const Dashboard(),
         MockTestScreen.routeName: (context) => const MockTestScreen(),
-        SubjectTest.routeName: (context) => SubjectTest(),
+        SubjectsTest.routeName: (context) => SubjectsTest(
+              subjectCode: 7,
+            ),
         ResultScreen.routeName: (context) => ResultScreen()
       },
       title: "AcadMy",

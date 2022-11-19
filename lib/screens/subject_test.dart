@@ -45,7 +45,6 @@ class _SubjectTestState extends State<SubjectTest> {
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(primary: Colors.green),
                         onPressed: () {
-                          print(super.widget.chosenAnswers);
                           Navigator.pushNamed(context, ResultScreen.routeName,
                               arguments: super.widget.chosenAnswers);
                         },
