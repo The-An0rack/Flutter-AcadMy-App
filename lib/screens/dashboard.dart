@@ -25,7 +25,7 @@ class Dashboard extends StatelessWidget {
             style: Theme.of(context).textTheme.headlineMedium,
           ),
           Text(
-            user.name,
+            UserCoreDetails.name,
             style: Theme.of(context).textTheme.displayMedium,
           ),
 
@@ -63,7 +63,7 @@ class Dashboard extends StatelessWidget {
                     childAspectRatio: 1,
                     crossAxisSpacing: 20,
                     mainAxisSpacing: 20),
-                itemCount: SubjectList.subList[user.batch]!.length,
+                itemCount: UserCoreDetails.subjects,
                 itemBuilder: (context, index) =>
                     subjectTestTile(context, index),
               ),

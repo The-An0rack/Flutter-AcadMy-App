@@ -4,10 +4,8 @@ import 'package:acadmy_app/screens/syllabus_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
-import '../data/device_details.dart';
-
 class HomePage extends StatefulWidget {
-  static String routeName = '/';
+  static String routeName = '/homepage';
   const HomePage({Key? key}) : super(key: key);
 
   @override
@@ -20,10 +18,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    DeviceDetails.height = MediaQuery.of(context).size.height;
-    DeviceDetails.width = MediaQuery.of(context).size.width;
-    DeviceDetails.fontScale = MediaQuery.of(context).textScaleFactor;
-
     return SafeArea(
       child: Scaffold(
         body: pages[_currentPageIndex],

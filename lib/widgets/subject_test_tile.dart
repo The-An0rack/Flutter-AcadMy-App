@@ -36,7 +36,7 @@ Widget subjectTestTile(BuildContext context, int index) {
               fit: BoxFit.cover,
             ),
           ),
-          Text(SubjectList.subList[user.batch]![index]),
+          Text(" ${SubjectList.subList[index.toString()]}"),
         ],
       ),
     ),

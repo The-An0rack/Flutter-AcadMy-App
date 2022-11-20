@@ -1,5 +1,8 @@
 import 'package:acadmy_app/data/device_details.dart';
+import 'package:acadmy_app/mock_data/user_profile_data.dart';
+import 'package:acadmy_app/screens/homepage.dart';
 import 'package:acadmy_app/screens/signup_screen.dart';
+import 'package:acadmy_app/services/authentication.dart';
 import 'package:flutter/material.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -13,6 +16,9 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   bool _isObscure = true;
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
   //TextEditingController email = new TextEditingController();
 
   @override
@@ -49,7 +55,8 @@ class _SignInScreenState extends State<SignInScreen> {
                   margin: const EdgeInsets.all(30),
                   child: Column(
                     children: [
-                      TextField(
+                      TextFormField(
+                        controller: emailController,
                         decoration: InputDecoration(
                           fillColor: Colors.grey.shade100,
                           hintText: 'Email',
@@ -63,6 +70,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         height: 15,
                       ),
                       TextFormField(
+                        controller: passwordController,
                         obscureText: _isObscure,
                         decoration: InputDecoration(
                             fillColor: Colors.grey.shade100,
@@ -86,7 +94,12 @@ class _SignInScreenState extends State<SignInScreen> {
                         height: 10,
                       ),
                       ElevatedButton(
-                        onPressed: () => {},
+                        onPressed: () {
+                          AuthService.signIn(
+                              emailController.text, passwordController.text);
+                          Navigator.pushReplacementNamed(
+                              context, HomePage.routeName);
+                        },
                         child: const Text("Sign In"),
                       ),
                       Row(
@@ -94,10 +107,13 @@ class _SignInScreenState extends State<SignInScreen> {
                         children: [
                           const Text("Not Registered? "),
                           TextButton(
-                              onPressed: () => {
-                                    Navigator.pushReplacementNamed(
-                                        context, SignUpScreen.routeName)
-                                  },
+                              onPressed: () {
+                                UserCoreDetails.email =
+                                    emailController.text.trim();
+
+                                Navigator.pushReplacementNamed(
+                                    context, SignUpScreen.routeName);
+                              },
                               child: const Text("Sign Up"))
                         ],
                       )

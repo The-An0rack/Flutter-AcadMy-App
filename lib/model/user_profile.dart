@@ -1,21 +1,35 @@
-class SubjectScore {
-  int correct;
-  int total;
+import 'dart:convert';
 
-  SubjectScore({required this.correct, required this.total});
-}
+User userFromJson(String str) => User.fromJson(json.decode(str));
 
-class UserProfile {
-  String name;
-  String email;
-  String batch;
+String userToJson(User data) => json.encode(data.toJson());
+
+class User {
+  User({
+    required this.distinctions,
+    required this.accuracy,
+    required this.email,
+    required this.name,
+  });
+
   int distinctions;
-  List<SubjectScore> subjectAccuracy;
+  Map<String, List<int>> accuracy;
+  String email;
+  String name;
 
-  UserProfile(
-      {required this.name,
-      required this.email,
-      required this.batch,
-      required this.distinctions,
-      required this.subjectAccuracy});
+  factory User.fromJson(Map<String, dynamic> json) => User(
+        distinctions: json["distinctions"],
+        accuracy: Map.from(json["accuracy"]).map((k, v) =>
+            MapEntry<String, List<int>>(k, List<int>.from(v.map((x) => x)))),
+        email: json["email"],
+        name: json["name"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "distinctions": distinctions,
+        "accuracy": Map.from(accuracy).map((k, v) =>
+            MapEntry<String, dynamic>(k, List<dynamic>.from(v.map((x) => x)))),
+        "email": email,
+        "name": name,
+      };
 }

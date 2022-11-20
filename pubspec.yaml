@@ -38,6 +38,9 @@ dependencies:
   random_avatar: any
   percent_indicator: ^4.0.1
   http: ^0.13.5
+  firebase_core: 
+  firebase_auth: ^4.1.3
+  email_validator: ^2.1.17
 
 dev_dependencies:
   flutter_test:
